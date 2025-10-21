@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>독도 퀴즈</title>
+<style>
+    /* 화면을 가운데 정렬하고 텍스트 크기를 키웁니다. */
+body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: 'SKYBORI', '하늘보리체', sans-serif; /* 한글 폰트 적용 */
+        font-size: 72px;
+        cursor: pointer;
+        text-align: center;
+        /* ------------ 이 5줄을 추가하거나 수정하세요 ------------ */
+        background-image: url('DOKDO.png'); /* 이미지 경로 */
+        background-size: cover; /* 이미지가 화면을 가득 채우도록 설정 */
+        background-repeat: no-repeat; /* 이미지가 반복되지 않도록 설정 */
+        background-position: center; /* 이미지를 중앙에 위치 */
+        color: #01579b; 
+        /* -------------------------------------------------------- */
+    }
+    #output {
+        padding: 40px;
+        border: 5px solid #01579b;
+        min-width: 600px; /* 최소 너비 */
+        background-color: white;
+        border-radius: 15px;
+        box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.3);
+        line-height: 1.5;
+    }
+</style>
+</head>
+<body>
+
+<div id="output">
+    <p>독도 퀴즈 문구를 랜덤으로 뽑아보세요⁉️</p>
+    <p style="font-size: 30px;">(화면 아무 곳이나 클릭하세요)</p>
+</div>
+
+<script>
+    // 1. 여기에 독도 관련 문구들을 입력하세요. (쉼표로 구분)
+    // 따옴표와 쉼표를 정확히 지켜주셔야 오류 없이 동작합니다!
+    const phrases = [
+        "독도의 날은 10월 25일이다!",
+        "독도 주변에서는 고래🐳를 볼 수 있다!",
+        "독도는 우리나라에서 가장 오래된 🌋화산섬이다!",
+        "독도는 동도와 서도, 그리고 크고 작은 섬 89개로 이루어져 있다!",
+        "독도에는 우체통이 있다.📮!",
+        "독도에서는 🌧️빗물을 모아 식수로 사용한다!",
+        "독도경비대는 지금 독도를 지키는 👮경찰의 이름이다!",
+        "독도에는 🕯️촛대와 🐘코끼리 모양의 바위를 볼 수 있다!",
+        "독도에 가면 독도 강치를 볼 수 있다! 🦭",
+        "독도의 옛 이름은 우산국이다!",
+        "독도는 천연보호구역이다!",
+        "🗺️독도 생태지도를 통해 독도에 살고 있는 다양한 해양 생물을 알 수 있다!",
+        "독도에 사는 독도 새우🦐는 세 종류이다!",
+        "독도에는 숲이 있다?🌳🌳",
+        "독도에는 눈이 오지 않는다?☃️",
+        "독도는 제주도보다 크다?🫢",
+        "독도는 👨‍👩‍👧‍👦어린이는 갈 수 없다?",
+        "독도는 🧭주소 상으로 강원도에 속해 있다?",
+        "독도는 👩‍⚖️국제해양법상으로 섬이다?",
+        "독도에는 📪우체국이 있다?",
+        "괭이갈매기는🕊️ 독도에만 사는 새이다?"
+    ];
+
+// 2. 초기 화면 문구 설정
+    const initialText = '<p> 독도 퀴즈 문구를 랜덤으로 뽑아보세요⁉️</p><p class="initial-text">(화면 아무 곳이나 클릭하세요)</p>';
+
+    // 3. 현재 상태를 추적할 변수 (true: 랜덤 문구 출력, false: 초기화면 출력)
+    let isRandomMode = false; 
+
+    // 4. 화면 클릭 시 동작하는 함수
+    function toggleDisplay() {
+        const outputElement = document.getElementById('output');
+        
+        if (isRandomMode) {
+            // 현재 랜덤 문구 모드였으니, 다음 클릭은 초기화면을 보여줍니다.
+            outputElement.innerHTML = initialText;
+            isRandomMode = false;
+        } else {
+            // 현재 초기화면이었으니, 다음 클릭은 랜덤 문구를 보여줍니다.
+            // phrases 배열의 길이 내에서 랜덤 인덱스를 생성
+            const randomIndex = Math.floor(Math.random() * phrases.length);
+            
+            // 해당 인덱스의 문구를 가져와서 화면에 출력
+            outputElement.textContent = phrases[randomIndex];
+            isRandomMode = true;
+        }
+    }
+
+    // 5. body 전체에 클릭 이벤트 리스너를 추가
+    document.body.addEventListener('click', toggleDisplay);
+</script>
+
+</body>
+</html>
